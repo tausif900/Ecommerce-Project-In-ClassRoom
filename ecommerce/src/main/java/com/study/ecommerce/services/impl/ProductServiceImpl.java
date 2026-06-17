@@ -31,8 +31,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<ProductDto> getAllProduct() {
-		// TODO Auto-generated method stub
-		return null;
+//		findAll returns all products from product table
+		List<Product> products = productRepository.findAll();
+//		Converts List of products into productDto.class using Stream API bcuz modelMapper cannot convert multiple objects at a time.
+		List<ProductDto> productDtoList = products.stream().map((p) -> modelMapper.map(p, ProductDto.class)).toList();
+		return productDtoList;
 	}
 
 	public ProductDto getProductById(Integer id) {
