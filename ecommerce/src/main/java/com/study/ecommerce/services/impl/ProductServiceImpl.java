@@ -39,8 +39,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public ProductDto getProductById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+//		Yaha pe findBy method mujhe Optional return krega, means jo id di gyi hai wo hai to theek or nahi to..,uske pas ek method hai orelseThrow , means id hai to dedo wrna exception throw krdo...
+		Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found."));
+		return modelMapper.map(product, ProductDto.class);
 	}
 
 	public ProductDto updateProduct(Integer id, ProductDto productDto) {
@@ -49,8 +50,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public void deleteProduct(Integer id) {
-		// TODO Auto-generated method stub
-
+		Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found"));
+		
+		productRepository.delete(product);
 	}
 
 }
