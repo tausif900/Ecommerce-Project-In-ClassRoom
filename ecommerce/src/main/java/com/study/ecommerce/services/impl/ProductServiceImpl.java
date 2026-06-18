@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.study.ecommerce.dtos.ProductDto;
@@ -45,13 +46,19 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public ProductDto updateProduct(Integer id, ProductDto productDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found"));
+
+		product.setName(productDto.getName());
+		product.setDescription(productDto.getDescription());
+		product.setPrice(productDto.getPrice());
+
+		Product updatedProduct = productRepository.save(product);
+
+		return modelMapper.map(updatedProduct, ProductDto.class);
 	}
 
 	public void deleteProduct(Integer id) {
 		Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found"));
-		
 		productRepository.delete(product);
 	}
 
