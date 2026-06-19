@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
 		userDto.setRole(Role.ROLE_CUSTOMER);
 		User user = modelMapper.map(userDto, User.class);
 		User savedUser = userRepository.save(user);
-		return null;
+
+		return modelMapper.map(savedUser, UserDto.class);
 	}
 
 }
