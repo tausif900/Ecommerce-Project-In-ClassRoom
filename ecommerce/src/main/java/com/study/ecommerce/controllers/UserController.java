@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.study.ecommerce.dtos.UserDto;
 import com.study.ecommerce.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -23,7 +25,7 @@ public class UserController {
 //	POST - localhost:8080/users
 //	---------------------------------------
 	@PostMapping
-	public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto) {
 		return new ResponseEntity<UserDto>(userService.register(userDto), HttpStatus.CREATED);
 	}
 }
