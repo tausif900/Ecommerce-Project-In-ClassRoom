@@ -1,6 +1,7 @@
 package com.study.ecommerce.dtos;
 
 import com.study.ecommerce.enums.Role;
+import com.study.ecommerce.validators.PasswordMatch;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@PasswordMatch
 //	UserDto is a copy of user class.
 public class UserDto {
 
