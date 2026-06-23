@@ -1,5 +1,6 @@
 package com.study.ecommerce.dtos;
 
+
 import com.study.ecommerce.entities.Category;
 
 import jakarta.validation.constraints.Min;
@@ -29,5 +30,6 @@ public class ProductDto {
 	@Min(1)
 	private Integer price;
 
+	
 	private Category category;
 }
