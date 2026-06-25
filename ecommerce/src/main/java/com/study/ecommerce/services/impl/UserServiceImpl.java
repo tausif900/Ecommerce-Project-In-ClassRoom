@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
 		return modelMapper.map(savedUser, UserDto.class);
 	}
 
+	@Override
+	public boolean emailExist(String email) {
+		return userRepository.existsByEmail(email);
+	}
+
 }
