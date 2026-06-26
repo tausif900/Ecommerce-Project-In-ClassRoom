@@ -6,6 +6,7 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +30,7 @@ public class Category {
 	private String name;
 
 	@OneToMany(mappedBy = "category")	//We use the @OneToMany annotation in Java persistence frameworks (like Hibernate 						and Spring Data JPA) to map a parent-child database relationship where a single 						entity (the "one") is associated with multiple instances of another entity (the 						"many"). It allows us to hold a collection of child objects directly inside the 						parent class (e.g., a List<Product> inside a Department products).
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Product> products;
 	
 

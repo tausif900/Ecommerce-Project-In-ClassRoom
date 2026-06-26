@@ -1,5 +1,6 @@
 package com.study.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -49,7 +50,7 @@ public class Product {
 	private Integer price;
 
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	private Category category;
 
 }
