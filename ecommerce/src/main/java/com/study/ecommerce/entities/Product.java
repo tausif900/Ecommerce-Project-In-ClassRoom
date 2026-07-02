@@ -52,5 +52,6 @@ public class Product {
 	@ManyToOne
 	@JsonBackReference
 	private Category category;
-
+	
+	private String imageUrl;
 }
