@@ -1,7 +1,9 @@
 package com.study.ecommerce.services.impl;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.study.ecommerce.dtos.UserDto;
@@ -19,8 +21,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	public UserDto register(UserDto userDto) {
+		String hashedPassword = passwordEncoder.encode(userDto.getPassword());
+		userDto.setPassword(hashedPassword);
 		userDto.setRole(Role.ROLE_CUSTOMER);
 		User user = modelMapper.map(userDto, User.class);
 		User savedUser = userRepository.save(user);
