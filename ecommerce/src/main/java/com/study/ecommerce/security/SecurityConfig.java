@@ -31,7 +31,11 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
 		httpSecurity.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(request -> request.requestMatchers(HttpMethod.GET, "/products/**").permitAll()
-						.requestMatchers(HttpMethod.POST, "/users","/auth/login").permitAll().anyRequest().authenticated());
+						.requestMatchers(HttpMethod.POST, "/users", "/auth/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/products", "/categories").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/products/**", "/categories/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/products/**", "/categories/**").hasRole("ADMIN").anyRequest()
+						.authenticated());
 
 		httpSecurity.httpBasic(Customizer.withDefaults());
 		httpSecurity.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
