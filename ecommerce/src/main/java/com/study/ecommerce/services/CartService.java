@@ -11,4 +11,5 @@ public interface CartService {
 //	Add to cart
 	Cart addToCart(String userId, Integer productId, CartItem cartItem);
 
+	void deleteCartItem(Integer cartItemId);
 }
