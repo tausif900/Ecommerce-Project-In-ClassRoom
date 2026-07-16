@@ -51,7 +51,9 @@ public class CartServiceImpl implements CartService {
 				.orElseThrow(() -> new RuntimeException("Product not found"));
 		for (CartItem item : cart.getCartItems()) {
 			if (item.getProduct().getId().equals(productId)) {
-				item.setQuantity();
+				item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+				cartItemRepository.save(item);
+				return getCart(userId);
 			}
 		}
 
