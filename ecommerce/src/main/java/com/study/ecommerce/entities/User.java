@@ -49,9 +49,12 @@ public class User implements UserDetails {
 
 	@OneToOne(mappedBy = "user")
 	private Cart cart;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Address> addresses;
+
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,47 +1,30 @@
 package com.study.ecommerce.entities;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Address {
+public class OrderItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	private String fullName;
-
-	private String phoneNo;
-
-	private String addressLine;
-
-	private String city;
-
-	private String state;
-
-	private String pincode;
+	@ManyToOne
+	private Product product;
 
 	@ManyToOne
-	@JsonIgnore
-	private User user;
+	private Order order;
 
-	@OneToMany(mappedBy = "address")
-	@JsonIgnore
-	private List<Order> order;
+	private Integer quantity;
 
 }
